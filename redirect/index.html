@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liamz Search</title>
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+</head>
+<body>
+    <h1 id="log">Trying to redirect your search...</h1>
+    <script>
+        const prams = new URLSearchParams(window.location.search);
+        const search = prams.get("search");
+        const text = document.getElementById("log");
+        let URL = `https://www.google.com/search?q=${search}`;
+        URL += "+-ai";
+        if (search) {
+            window.location.href = URL;
+        } else {
+            text.innerText = "No search query provided.";
+        }
+    </script>
+</body>
+</html>
