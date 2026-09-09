@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liamz Search</title>
+
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: rgb(105, 211, 204);
+            margin: 0;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .bar {
+            background-color: rgba(66, 169, 209, 0.8);
+            padding: 1vh;
+            border-radius: 2em;
+        }
+
+        input {
+            background-color: rgb(170, 219, 216);
+            border-radius: 20px;
+            border: none;
+            height: 20px;
+        }
+
+        .options {
+            background-color: rgba(66, 169, 209, 0.8);
+            padding: 10px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="logo">
+        <img src="logo.png" alt="Liamz Logo, the letter L with the words Liamz written inside of it" width="200px" height="auto">
+    </div>
+
+    <div class="bar">
+
+        <input type="text" id="search" placeholder="Search..." autofocus autocomplete="off" size="50%">
+        <input type="button" id="Search" value="Search!">
+
+    </div>
+
+    <div class="options">
+        <form action="queryfe">
+            <input type="checkbox" id="ai">
+            <label for="ai">Include AI Results?</label>
+            <input type="checkbox" id="web">
+            <label for="web">Show Web Results?</label>
+        </form>
+    </div>
+
+<script>
+
+const button = document.getElementById("Search");
+const form = document.getElementById("queryfe");
+const formbox = document.getElementById("formbox");
+
+function s() {
+
+    const query = document.getElementById("search").value
+
+    let URL = "https://www.google.com/search?q=" + encodeURIComponent(query);
+
+    const aiCheckbox = document.getElementById("ai");
+    const webCheckbox = document.getElementById("web");
+
+    if (!aiCheckbox.checked && !webCheckbox.checked) {
+        URL += "+-ai";
+    }
+
+    if (webCheckbox.checked) {
+        URL += "&udm=web";
+    }
+
+    window.open(URL, "_self");
+
+}
+
+button.addEventListener("click", s);
+
+search.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        s();
+    }
+});
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevents the page from refreshing
+    s();
+});
+
+
+window.addEventListener("load", () => {
+    document.getElementById("search").focus();
+});
+
+</script>
+
+</body>
+</html>
